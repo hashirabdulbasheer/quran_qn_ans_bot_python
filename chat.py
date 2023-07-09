@@ -68,7 +68,7 @@ while True:
         inp = input("Enter question (type 'quit' to exit):").strip()
         if inp == "quit":
             break
-        result = qa({"question": inp, "chat_history": []})
+        result = qa({"question": inp + " from the quran context", "chat_history": []})
 
         source_documents = result["source_documents"]
         print("")
