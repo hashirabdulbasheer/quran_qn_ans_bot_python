@@ -81,7 +81,7 @@ while True:
             sura = metadata["surah"]
             aya = metadata["aya"]
             print(str(sura) + ":" + str(aya) + " " + content)
-            print("http://uxquran.com/apps/quran-ayat/?sura=" + str(sura) + "&aya=" + str(aya))
+            print("https://uxquran.com/apps/quran-ayat/?sura=" + str(sura) + "&aya=" + str(aya))
             print("")
 
         print("")
