@@ -70,6 +70,6 @@ class QuranSimilarVerses:
         return response
 
 
-quran = QuranSimilarVerses("resources", "embeddings_wahiddudin", "input.json")
-answer = quran.get_similar("How many years did Ashabul Khaf sleep in the cave")
-print(answer)
+# quran = QuranSimilarVerses("resources", "embeddings_wahiddudin", "input.json")
+# answer = quran.get_similar("How many years did Ashabul Khaf sleep in the cave")
+# print(answer)
