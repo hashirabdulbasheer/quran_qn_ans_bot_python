@@ -1,7 +1,6 @@
 #
-# This chatbot is designed to provide relevant verses from the Noble Quran
-# that may address a question, along with a potential answer derived
-# from those verses using an AI-powered language model
+# This class provides relevant verses from the Noble Quran
+# that may address a question
 #
 # uxquran.com
 #
