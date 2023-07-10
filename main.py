@@ -12,7 +12,7 @@ from chat import QuranOpenChat
 
 openai.api_key  = os.environ['OPENAI_API_KEY']
 
-chat = QuranOpenChat("input.json")
+chat = QuranOpenChat("resources/input.json")
 chat.initialize()
 
 while True:

@@ -9,6 +9,8 @@
 import numpy as np
 import json
 import itertools
+import zipfile
+import os
 from langchain.embeddings.openai import OpenAIEmbeddings
 
 class QuranSimilarVerses:
@@ -16,8 +18,16 @@ class QuranSimilarVerses:
     translation = None
     embedding = OpenAIEmbeddings()
 
-    def __init__(self, quran_embeddings, translation):
-        self.quran_data = np.load(quran_embeddings, allow_pickle=True)
+    def __init__(self, quran_embeddings_name, translation):
+        # if first time, then unzip quran embeddings
+        if not os.path.exists(quran_embeddings_name + ".npy"):
+            with zipfile.ZipFile(quran_embeddings_name + ".zip","r") as zip_ref:
+                    zip_ref.extractall("resources")          
+        
+        # load quran embeddings
+        self.quran_data = np.load(quran_embeddings_name + ".npy", allow_pickle=True)
+
+        # load quran translation
         trans_file = open(translation)
         trans_json = json.load(trans_file)
         trans_file.close()
@@ -57,6 +67,6 @@ class QuranSimilarVerses:
         return response
 
 
-quran = QuranSimilarVerses("out_wahiddudin.npy", "input.json")
+quran = QuranSimilarVerses("resources/embeddings_wahiddudin", "resources/input.json")
 answer = quran.get_similar("How many years did Ashabul Khaf sleep in the cave")
 print(answer)
