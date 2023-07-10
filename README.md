@@ -2,6 +2,8 @@
 
 This chatbot is designed to provide relevant verses from the Noble Quran that may address a question, along with a potential answer derived from those verses using an AI-powered language model.
 
+Run: python main.py
+
 Demo Video:
 
 [https://www.youtube.com/watch?v=ETyrWNhJoDQ](https://www.youtube.com/watch?v=ETyrWNhJoDQ)
