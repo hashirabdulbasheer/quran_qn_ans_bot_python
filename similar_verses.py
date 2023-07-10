@@ -18,17 +18,20 @@ class QuranSimilarVerses:
     translation = None
     embedding = OpenAIEmbeddings()
 
-    def __init__(self, quran_embeddings_name, translation):
+    def __init__(self, folder, quran_embeddings_name, translation_file):
         # if first time, then unzip quran embeddings
-        if not os.path.exists(quran_embeddings_name + ".npy"):
-            with zipfile.ZipFile(quran_embeddings_name + ".zip","r") as zip_ref:
-                    zip_ref.extractall("resources")          
+        embedding_file_path = os.path.join(folder, quran_embeddings_name + ".npy")
+        if not os.path.exists(embedding_file_path):
+            zip_file_path = os.path.join(folder, quran_embeddings_name + ".zip")
+            with zipfile.ZipFile(zip_file_path,"r") as zip_ref:
+                    zip_ref.extractall(folder)          
         
         # load quran embeddings
-        self.quran_data = np.load(quran_embeddings_name + ".npy", allow_pickle=True)
+        self.quran_data = np.load(embedding_file_path, allow_pickle=True)
 
         # load quran translation
-        trans_file = open(translation)
+        translation_file_path = os.path.join(folder, translation_file)
+        trans_file = open(translation_file_path)
         trans_json = json.load(trans_file)
         trans_file.close()
         self.translation = trans_json
@@ -67,6 +70,6 @@ class QuranSimilarVerses:
         return response
 
 
-# quran = QuranSimilarVerses("resources/embeddings_wahiddudin", "resources/input.json")
-# answer = quran.get_similar("How many years did Ashabul Khaf sleep in the cave")
-# print(answer)
+quran = QuranSimilarVerses("resources", "embeddings_wahiddudin", "input.json")
+answer = quran.get_similar("How many years did Ashabul Khaf sleep in the cave")
+print(answer)
